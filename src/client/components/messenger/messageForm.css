@@ -1,0 +1,10 @@
+input {
+    border: none;
+}
+
+input[type=submit] {
+    
+    height: 39px;
+    width: 20%;
+}
+
