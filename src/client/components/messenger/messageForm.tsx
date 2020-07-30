@@ -15,21 +15,6 @@ const MessageForm = (): JSX.Element => {
         console.log("Utterance: " + utterance);
         console.log("time" +time);
         const apiUrl = "http://localhost:4000/api/start";
-        /*fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-                'Origin':'http://localhost:8080',
-                'Accept':'*'},
-            body: JSON.stringify({
-              executionName: "mock000",
-              input : {
-                message: "hello",
-                phoneNumber: "15712894217",
-              }
-            })
-          })
-            .then(response => response.json())*/
 
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -38,10 +23,9 @@ const MessageForm = (): JSX.Element => {
                 'Origin':'http://localhost:8080',
                 'Accept':'*'},
             body: JSON.stringify({
-              executionName: "moc2222",
               input : {
-                message: "hello",
-                phoneNumber: "15712894217",
+                message: utterance,
+                phoneNumber: phoneNumber,
               }
             })
           });
