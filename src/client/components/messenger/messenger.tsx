@@ -24,9 +24,7 @@ function Messenger() {
                     </div>
                 </li>
             </ol>
-            <div className= "input-bar"> 
             <MessageForm></MessageForm>
-            </div>
         </section>
     )
   }

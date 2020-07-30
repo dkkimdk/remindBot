@@ -2,9 +2,35 @@ input {
     border: none;
 }
 
-input[type=submit] {
-    
-    height: 39px;
-    width: 20%;
+input[type=text] {
+    border-radius: 5px;
 }
 
+.messageInput {
+    min-height: 150px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 8px 0;
+    word-break: break-word;
+    padding: 12px 20px;
+    border: none;
+    resize: none;
+    overflow-y: scroll;
+}
+
+.input-bar {
+    background: #E9C46A;
+    padding: 0px 8px 50px 8px;
+    font-size: 1rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;    
+
+  }
+
+textarea {
+    border-radius:10px;
+}
+
+textarea:focus {
+   border-radius:5px;
+}

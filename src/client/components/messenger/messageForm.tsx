@@ -34,20 +34,21 @@ const MessageForm = (): JSX.Element => {
     }
 
     return (
-       
+         <div className= "input-bar"> 
             <form>
                 <label>Phone Number</label>
                 <input type="text" onChange= {(e: React.ChangeEvent<HTMLInputElement>) =>
                     setPhoneNumber(e.target.value)}></input>
                 <label>Message</label>
-                <input type="text"  onChange= {(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setUtterance(e.target.value)}></input>
+                <textarea className="messageInput" onChange= {(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                    setUtterance(e.target.value)}></textarea>
                 <label>Time</label>
                 <input type="text"  onChange= {(e: React.ChangeEvent<HTMLInputElement>) =>
                     setTime(e.target.value)}></input>
                 <p></p>
-                <input type="submit" value="Send" onClick={handleSubmit} ></input>
+                <button  onClick={handleSubmit} > Send</button>
             </form>
+        </div>
     )
 }
 

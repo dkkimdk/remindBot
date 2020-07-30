@@ -24,7 +24,7 @@ export default (
     });
 
     router.post('/start', async (req: Request, res: Response) => {
-        console.log(req)
+        console.log(req.body)
         //console.log(req.body.executionName)
         if (!req.body.input){
             return res.status(400).json({message:"input is missing"})
