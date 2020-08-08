@@ -23,21 +23,25 @@ export const getExecutions = async (
   export const startExecution = async (
     region: string,
     stateMachineArn: string,
-    input:string,
-    name?: string,
+    requestBody:string,
+    datetime: Date,
   ) => {
-    input = JSON.stringify(input);
+    
+    const payload= {
+      input: requestBody,
+      time: new Date(datetime).toISOString()
+    }
+
+    const input = JSON.stringify(payload);
     const stepFunctions = new AWS.StepFunctions({ region });
     const opts = {
       stateMachineArn,
-      input,
-      ...(name && {name})
+      input
     };
     try{
         const { executionArn } = await stepFunctions.startExecution(opts).promise();    
         return executionArn;
     } catch(error) {
-        console.log(error);
         return error;
     }
   };

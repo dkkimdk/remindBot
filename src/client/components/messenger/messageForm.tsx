@@ -6,14 +6,14 @@ const MessageForm = (): JSX.Element => {
 
     const [utterance, setUtterance] = React.useState("");
     const [phoneNumber, setPhoneNumber] = React.useState("");
-    const [time, setTime] = React.useState("");
+    const [delay, setDelay] = React.useState("");
 
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Phone Number: " + phoneNumber);
         console.log("Utterance: " + utterance);
-        console.log("time" +time);
+        console.log("time" +delay);
         const apiUrl = "http://localhost:4000/api/start";
 
         const response = await fetch(apiUrl, {
@@ -23,6 +23,7 @@ const MessageForm = (): JSX.Element => {
                 'Origin':'http://localhost:8080',
                 'Accept':'*'},
             body: JSON.stringify({
+              time: computeDelayedTimestamp(delay),
               input : {
                 message: utterance,
                 phoneNumber: phoneNumber,
@@ -31,6 +32,14 @@ const MessageForm = (): JSX.Element => {
           });
           const responseJson = await response.json();
           console.log(responseJson);
+    }
+
+
+    const computeDelayedTimestamp= (delay:string): Date => {
+        const delayObject = parseInt(delay);
+        const currentDateObject = new Date();
+        currentDateObject.setMinutes( currentDateObject.getMinutes() + delayObject);
+        return currentDateObject;
     }
 
     return (
@@ -42,9 +51,9 @@ const MessageForm = (): JSX.Element => {
                 <label>Message</label>
                 <textarea className="messageInput" onChange= {(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                     setUtterance(e.target.value)}></textarea>
-                <label>Time</label>
+                <label>Minutes Delayed</label>
                 <input type="text"  onChange= {(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setTime(e.target.value)}></input>
+                    setDelay(e.target.value)}></input>
                 <p></p>
                 <button  onClick={handleSubmit} > Send</button>
             </form>

@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import {getExecutions, startExecution} from './../external-apis/aws-service'
+import {getExecutions, startExecution} from '../services/aws-service'
 
 
 export default (
@@ -10,7 +10,7 @@ export default (
 
     router.get('/all', async (req: Request, res: Response) => {
         console.log(req);
-        const executions = await getExecutions('us-east-1','arn:aws:states:us-east-1:441927962368:stateMachine:sampleMessenger')
+        const executions = await getExecutions('us-east-1','arn:aws:states:us-east-1:441927962368:stateMachine:sampleMessenger-1')
         /*if (!executions) {
             return res.status(400).json({message: 'Error'})
         } else{
@@ -26,11 +26,11 @@ export default (
     router.post('/start', async (req: Request, res: Response) => {
         console.log(req.body)
         //console.log(req.body.executionName)
-        if (!req.body.input){
+        if (!req.body.input.message || !req.body.input.phoneNumber || !req.body.time ){
             return res.status(400).json({message:"input is missing"})
         }
 
-        const executions = await startExecution('us-east-1','arn:aws:states:us-east-1:441927962368:stateMachine:sampleMessenger', req.body.input,req.body.executionName)
+        const executions = await startExecution('us-east-1','arn:aws:states:us-east-1:441927962368:stateMachine:sampleMessenger-1', req.body.input,req.body.time)
         if (executions.statusCode === 400) {
             return res.status(400).json({message:executions});
         } else {

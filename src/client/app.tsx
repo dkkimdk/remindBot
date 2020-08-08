@@ -9,7 +9,7 @@ export default hot(module) (() => {
 
     return (
         <div >
-          <Header title = {'Remind Bot'} navigation = {['Work', 'About', 'Resume']}></Header>
+          <Header title = {'Remind Bot'} navigation = {[ 'About']}></Header>
           <Switch>
                   <Route path="/" component= {Home} exact />
                   <Route path="/david" render = { () => (<div>david kim</div>)} />

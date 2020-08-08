@@ -3,6 +3,7 @@ import { PORT } from './config/constants';
 import { join } from "path";
 
 import createMessageRouter from './routes/messages'
+import createPasswordRouter from './routes/passwordAuth'
 
 const app = express();
 app.use(express.json());
@@ -17,7 +18,7 @@ app.use(function(__, res, next) {
 });
 
 app.use('/api', createMessageRouter('hello'));
-
+app.use('/password', createPasswordRouter());
 
 
 app.listen(PORT, () => {
